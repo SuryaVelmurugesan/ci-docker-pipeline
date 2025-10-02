@@ -11,15 +11,16 @@ pipeline {
         git branch: 'main', url: 'https://github.com/SuryaVelmurugesan/ci-docker-pipeline.git'
       }
     }
+
     stage('Build Docker Image') {
       steps {
-        sh "docker build -t %IMAGE_NAME% ."
+        sh "docker build -t ${IMAGE_NAME} ."
       }
     }
 
     stage('Show Docker Images') {
       steps {
-        sh "docker images"
+        sh "docker images | grep emc-nodejs-app"
       }
     }
   }
